@@ -16,20 +16,14 @@ from dataclasses import asdict
 import streamlit as st
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from transformers.utils import logging
 from appPrepare.interface import GenerationConfig, generate_interactive
-import json
-import openxlab
+from appPrepare.download_merge import dl_mg, logger
+import os
 import warnings
-with open('./appPrepare/_k.json', 'r') as f:
-    key_dict = json.load(f)
-
-
 warnings.filterwarnings('ignore')
-openxlab.login(ak=key_dict['ak'], sk=key_dict['sk'])
 
-logger = logging.get_logger(__name__)
-
+# os.system(f'sh ./appPrepare/env_prepare.sh')
+mg_path = dl_mg()
 
 def on_btn_click():
     del st.session_state.messages
@@ -38,11 +32,11 @@ def on_btn_click():
 @st.cache_resource
 def load_model():
     model = (
-        AutoModelForCausalLM.from_pretrained("internlm/internlm-chat-7b", trust_remote_code=True)
+        AutoModelForCausalLM.from_pretrained(mg_path, trust_remote_code=True)
         .to(torch.bfloat16)
         .cuda()
     )
-    tokenizer = AutoTokenizer.from_pretrained("internlm/internlm-chat-7b", trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(mg_path, trust_remote_code=True)
     return model, tokenizer
 
 
