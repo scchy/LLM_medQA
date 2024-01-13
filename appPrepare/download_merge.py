@@ -22,6 +22,7 @@ def dl_mg():
         snapshot_download(model_id='sccHyFuture/LLM_medQA_adapter', cache_dir=hf_path)
     
     logger.info(f'[ dl_mg ] adapter --> {hf_path}')
+    hf_final_path = f'{hf_path}/sccHyFuture'
     # InternLM-chat-7b
     lm_7b_path = "/home/xlab-app-center/InternLM-chat-7b"
     if not os.path.exists(lm_7b_path):
@@ -36,14 +37,14 @@ def dl_mg():
     if os.path.exists(drop_f):
         os.system(f'rm {drop_f}')
 
-    os.system(f"xtuner convert merge {lm_7b_path} {hf_path} {mg_path}")
+    os.system(f"xtuner convert merge {lm_7b_path} {hf_final_path} {mg_path}")
     logger.info(f'[ dl_mg ] xtuner convert merge --> {mg_path}')
     print('\n------------------------------------')
     print(f'\nos.listdir({lm_7b_path})\n', os.listdir(lm_7b_path))
-    print(f'\nos.listdir({hf_path})\n', os.listdir(hf_path))
+    print(f'\nos.listdir({hf_final_path})\n', os.listdir(hf_final_path))
     print(f'\nos.listdir({mg_path})\n', os.listdir(mg_path))
     print('\n------------------------------------')
-    print(f"\nconvert-cmd: xtuner convert merge {lm_7b_path} {hf_path} {mg_path}")
+    print(f"\nconvert-cmd: xtuner convert merge {lm_7b_path} {hf_final_path} {mg_path}")
     print(f'\nos.listdir({mg_path})', os.listdir(mg_path))
     return  mg_path
 
