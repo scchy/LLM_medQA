@@ -19,7 +19,7 @@ def dl_mg():
     # hf modelscope download 
     hf_path = "/home/xlab-app-center/hf"
     if not os.path.exists(hf_path):
-        snapshot_download(model_id='sccHyFuture/LLM_medQA_adapter', cache_dir=hf_path, revision='v1.0.1')
+        snapshot_download(model_id='sccHyFuture/LLM_medQA_adapter', cache_dir=hf_path)
     
     logger.info(f'[ dl_mg ] adapter --> {hf_path}')
     # InternLM-chat-7b
