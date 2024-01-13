@@ -1,5 +1,5 @@
 import os
-from openxlab.model import ox_download
+from openxlab.model import download as ox_download
 from modelscope.hub.snapshot_download import snapshot_download
 from transformers.utils import logging
 import json
