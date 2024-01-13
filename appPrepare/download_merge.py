@@ -5,8 +5,11 @@ from transformers.utils import logging
 import json
 import openxlab
 
-with open('./_k.json', 'r') as f:
-    key_dict = json.load(f)
+key_dict = {
+    "ak" : "yzqrvr9mx3goqpgraejj ",
+    "sk" : "67pbdwkjvyl23q89zv2xrlgbr91nzramjmwazrye"
+}
+
 
 openxlab.login(ak=key_dict['ak'], sk=key_dict['sk'])
 logger = logging.get_logger(__name__)
