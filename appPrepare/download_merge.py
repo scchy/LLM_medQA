@@ -31,6 +31,10 @@ def dl_mg():
     mg_path = "/home/xlab-app-center/hf_merged"
     if not os.path.exists(mg_path):
         os.system(f'mkdir -p {mg_path}')
+    
+    drop_f = "/home/xlab-app-center/hf_merged/configuration.json"
+    if os.path.exists(drop_f):
+        os.system(f'rm {drop_f}')
 
     os.system(f"xtuner convert merge {lm_7b_path} {hf_path} {mg_path}")
     logger.info(f'[ dl_mg ] xtuner convert merge --> {mg_path}')
