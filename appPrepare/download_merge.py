@@ -33,9 +33,10 @@ def dl_mg():
     if not os.path.exists(mg_path):
         os.system(f'mkdir -p {mg_path}')
 
-    os.system(f"xtuner convert merge {lm_7b_path} {hf_final_path} {mg_path}")
+    res_ = os.system(f"xtuner convert merge {lm_7b_path} {hf_final_path} {mg_path}")
     logger.info(f'[ dl_mg ] xtuner convert merge --> {mg_path}')
     print('\n------------------------------------')
+    print(f"xtuner convert merge res={res_}")
     print(f'\nos.listdir({lm_7b_path})\n', os.listdir(lm_7b_path))
     print(f'\nos.listdir({hf_final_path})\n', os.listdir(hf_final_path))
     print(f'\nos.listdir({mg_path})\n', os.listdir(mg_path))
