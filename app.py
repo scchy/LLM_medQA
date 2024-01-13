@@ -13,8 +13,10 @@ import os
 import warnings
 warnings.filterwarnings('ignore')
 
-# os.system(f'sh ./appPrepare/env_prepare.sh')
+os.system(f'sh ./appPrepare/env_prepare.sh')
+logger.info('1- Prepare Xtuner')
 mg_path = dl_mg()
+logger.info('2- Download and Merged Adapater & base mode')
 generation_config = GenerationConfig(max_length=2048, top_p=0.01, temperature=0.01)
 user_prompt = "<|User|>:{user}\n"
 robot_prompt = "<|Bot|>:{robot}<eoa>\n"
