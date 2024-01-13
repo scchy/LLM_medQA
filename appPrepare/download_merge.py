@@ -38,6 +38,12 @@ def dl_mg():
 
     os.system(f"xtuner convert merge {lm_7b_path} {hf_path} {mg_path}")
     logger.info(f'[ dl_mg ] xtuner convert merge --> {mg_path}')
-    print(f'os.listdir({mg_path})', os.listdir(mg_path))
+    print('\n------------------------------------')
+    print(f'\nos.listdir({lm_7b_path})\n', os.listdir(lm_7b_path))
+    print(f'\nos.listdir({hf_path})\n', os.listdir(hf_path))
+    print(f'\nos.listdir({mg_path})\n', os.listdir(mg_path))
+    print('\n------------------------------------')
+    print(f"\nconvert-cmd: xtuner convert merge {lm_7b_path} {hf_path} {mg_path}")
+    print(f'\nos.listdir({mg_path})', os.listdir(mg_path))
     return  mg_path
 
