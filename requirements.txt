@@ -1,5 +1,5 @@
 gradio==4.4.0
-transformers==4.35.2
+transformers
 unstructured==0.10.30
 markdown==3.3.7
 tqdm
