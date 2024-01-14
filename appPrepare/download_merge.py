@@ -23,6 +23,9 @@ def dl_mg():
     
     logger.info(f'[ dl_mg ] adapter --> {hf_path}')
     hf_final_path = f'{hf_path}/sccHyFuture/LLM_medQA_adapter'
+    if os.path.exists(f'{hf_final_path}/configuration.json'):
+        os.system(f'rm {hf_final_path}/configuration.json')
+
     # InternLM-chat-7b
     lm_7b_path = "/home/xlab-app-center/InternLM-chat-7b"
     if not os.path.exists(lm_7b_path):
