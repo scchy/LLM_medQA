@@ -24,20 +24,6 @@ robot_prompt = "<|Bot|>:{robot}<eoa>\n"
 cur_query_prompt = "<|User|>:{user}<eoh>\n<|Bot|>:"
 
 
-def combine_history(prompt, chat_history):
-    """
-    chat_history [q, a]
-    """
-    total_prompt = ""
-    for message in chat_history:
-        cur_prompt = user_prompt.replace("{user}", message[0])
-        itotal_prompt += cur_prompt
-        cur_prompt = robot_prompt.replace("{robot}", message[1])
-        itotal_prompt += cur_prompt
-    total_prompt = total_prompt + cur_query_prompt.replace("{user}", prompt)
-    return total_prompt
-
-
 class Model_center():
     def __init__(self):
         # 构造函数，加载检索问答链
@@ -52,19 +38,13 @@ class Model_center():
             if question == None or len(question) < 1:
                 return "", chat_history
             try:
-                real_prompt = combine_history(question, chat_history)
-                out = ''
-                for cur_response in generate_interactive(
-                    model=self.model,
-                    tokenizer=self.tokenizer,
-                    prompt=real_prompt,
-                    additional_eos_token_id=103028,
-                    **asdict(generation_config),
-                ):
-                    out += cur_response
-
-                chat_history.append((question, out))
-                # 将问答结果直接附加到问答历史中，Gradio 会将其展示出来
+                question = question.replace(" ", '')
+                response, history = self.model.chat(
+                    self.tokenizer, 
+                    question, 
+                    history=chat_history
+                )
+                chat_history.append((question, response))
                 return "", chat_history
             except Exception as e:
                 return e, chat_history
