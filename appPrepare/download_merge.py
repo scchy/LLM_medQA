@@ -10,7 +10,7 @@ key_dict = {
     "sk" : "67pbdwkjvyl23q89zv2xrlgbr91nzramjmwazrye"
 }
 
-
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 openxlab.login(ak=key_dict['ak'], sk=key_dict['sk'])
 logger = logging.get_logger(__name__)
 

@@ -13,6 +13,7 @@ import os
 import warnings
 warnings.filterwarnings('ignore')
 
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 os.system(f'sh ./appPrepare/env_prepare.sh')
 logger.info('1- Prepare Xtuner')
 mg_path = dl_mg()
